@@ -18,5 +18,12 @@ fi
 # 设置端口
 export PORT=5000
 
+# 运行数据库迁移 (确保数据库存在)
+# 注意：Prisma CLI 的 migrate 命令从 schema 文件所在目录解析相对路径
+# 所以这里使用 file:../data/wewe-rss.db (相对于 apps/server/prisma/)
+echo "=== Running database migrations ==="
+DATABASE_URL="file:../data/wewe-rss.db" npx prisma@5 migrate deploy --schema apps/server/prisma/schema.prisma
+
 # 启动服务
+echo "=== Starting server ==="
 node apps/server/dist/main.js
