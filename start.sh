@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # 设置数据库环境变量 - 使用动态绝对路径
-# 获取当前工作目录的绝对路径
 CURRENT_DIR=$(pwd)
 export DATABASE_URL="file:${CURRENT_DIR}/apps/server/data/wewe-rss.db"
 export DATABASE_TYPE="sqlite"
