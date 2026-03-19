@@ -15,6 +15,11 @@ npx prisma@5 generate --schema apps/server/prisma/schema.prisma
 echo "=== Running database migrations ==="
 npx prisma@5 migrate deploy --schema apps/server/prisma/schema.prisma
 
+# 将数据库模板保存到项目中，以便运行时复制
+echo "=== Saving database template ==="
+mkdir -p apps/server/data
+cp /tmp/wewe-rss.db apps/server/data/wewe-rss.db.template
+
 echo "=== Building project ==="
 pnpm run -r build
 

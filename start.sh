@@ -5,6 +5,12 @@
 export DATABASE_URL="file:/tmp/wewe-rss.db"
 export DATABASE_TYPE="sqlite"
 
+# 如果数据库不存在，从模板复制
+if [ ! -f /tmp/wewe-rss.db ]; then
+  echo "=== Initializing database from template ==="
+  cp apps/server/data/wewe-rss.db.template /tmp/wewe-rss.db
+fi
+
 # 获取域名
 if [ -n "$COZE_PROJECT_DOMAIN_DEFAULT" ]; then
   export SERVER_ORIGIN_URL="$COZE_PROJECT_DOMAIN_DEFAULT"
@@ -14,10 +20,6 @@ fi
 
 # 设置端口
 export PORT=5000
-
-# 运行数据库迁移 (确保数据库存在)
-echo "=== Running database migrations ==="
-npx prisma@5 migrate deploy --schema apps/server/prisma/schema.prisma
 
 # 启动服务
 echo "=== Starting server ==="
