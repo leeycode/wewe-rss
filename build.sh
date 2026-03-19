@@ -14,8 +14,13 @@ npx prisma@5 generate --schema apps/server/prisma/schema.prisma
 # 确保数据目录存在
 mkdir -p apps/server/data
 
-echo "=== Running database migrations ==="
-npx prisma@5 migrate deploy --schema apps/server/prisma/schema.prisma
+# 只有当数据库文件不存在时才运行迁移
+if [ ! -f "apps/server/data/wewe-rss.db" ]; then
+  echo "=== Creating new database and running migrations ==="
+  npx prisma@5 migrate deploy --schema apps/server/prisma/schema.prisma
+else
+  echo "=== Database already exists, skipping migrations ==="
+fi
 
 echo "=== Building project ==="
 pnpm run -r build
