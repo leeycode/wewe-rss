@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # 设置数据库环境变量 (Prisma 运行时必需)
-export DATABASE_URL="file:../data/wewe-rss.db"
+# 注意：DATABASE_URL 相对于当前工作目录（项目根目录）
+export DATABASE_URL="file:apps/server/data/wewe-rss.db"
 export DATABASE_TYPE="sqlite"
+
+# 确保 data 目录存在
+mkdir -p apps/server/data
 
 # 获取域名
 if [ -n "$COZE_PROJECT_DOMAIN_DEFAULT" ]; then
