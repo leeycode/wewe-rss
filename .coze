@@ -2,9 +2,9 @@
 requires = ["nodejs-24"]
 
 [dev]
-build = ["bash", "-c", "pnpm install && npx prisma generate --schema apps/server/prisma/schema.prisma && npx prisma migrate deploy --schema apps/server/prisma/schema.prisma && pnpm run -r build"]
+build = ["bash", "build.sh"]
 run = ["bash", "start.sh"]
 
 [deploy]
-build = ["bash", "-c", "pnpm install && npx prisma generate --schema apps/server/prisma/schema.prisma && npx prisma migrate deploy --schema apps/server/prisma/schema.prisma && pnpm run -r build"]
+build = ["bash", "build.sh"]
 run = ["bash", "start.sh"]
