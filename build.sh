@@ -1,9 +1,8 @@
 #!/bin/bash
 set -e
 
-# 设置环境变量
-# 使用绝对路径指向项目内的数据目录
-export DATABASE_URL="file:/opt/bytefaas/apps/server/data/wewe-rss.db"
+# 设置环境变量 - 使用动态绝对路径
+export DATABASE_URL="file:$(pwd)/apps/server/data/wewe-rss.db"
 export DATABASE_TYPE="sqlite"
 
 echo "=== Installing dependencies ==="
