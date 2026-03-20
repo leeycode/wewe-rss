@@ -15,6 +15,10 @@ fi
 # 设置端口
 export PORT=5000
 
+# 确保数据库文件和目录有写入权限 (Railway 容器需要)
+chmod -R 666 ${CURRENT_DIR}/apps/server/data/
+chmod -R 755 ${CURRENT_DIR}/apps/server/data/
+
 # 启动服务
 echo "=== Starting server with DATABASE_URL: $DATABASE_URL ==="
 node apps/server/dist/main.js
